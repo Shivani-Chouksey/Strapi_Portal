@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_tag_tag_sections",
+  "info": {
+    "displayName": "tag_section",
+    "icon": "shield"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "sub_heading": {
+      "type": "text"
+    },
+    "blogs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog.blog"
+    }
+  }
+}

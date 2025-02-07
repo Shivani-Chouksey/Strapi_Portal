@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_testimonial_testimonial_cards",
+  "info": {
+    "displayName": "testimonial_card"
+  },
+  "options": {},
+  "attributes": {
+    "rating": {
+      "type": "decimal"
+    },
+    "content": {
+      "type": "text"
+    },
+    "profile": {
+      "displayName": "profile",
+      "type": "component",
+      "repeatable": false,
+      "component": "testimonial.profile"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_banner_offers",
+  "info": {
+    "displayName": "offer"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}

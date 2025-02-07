@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_product_products_sections",
+  "info": {
+    "displayName": "products_section"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "This Week’s",
+      "required": true,
+      "unique": true
+    },
+    "sub_heading": {
+      "type": "text"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product"
+    }
+  }
+}

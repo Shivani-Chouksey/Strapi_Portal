@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_category_categories_sections",
+  "info": {
+    "displayName": "categories_section"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true,
+      "default": "Categories"
+    },
+    "sub_heading": {
+      "type": "text",
+      "default": "Browse by Category"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
+    }
+  }
+}
