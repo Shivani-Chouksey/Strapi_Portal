@@ -1,7 +1,36 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Breadcrumb from "../Common/Breadcrumb";
+import axios from "axios";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    subject: "",
+    phone: "",
+    message: "",
+    email: "",
+  });
+
+  const onChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:1337/api/contact/submit", formData);
+      // Here you can handle the form submission, e.g., send the data to an API
+      console.log("Form Data Submitted:", formData);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+
   return (
     <>
       <Breadcrumb title={"Contact"} pages={["contact"]} />
@@ -87,18 +116,19 @@ const Contact = () => {
             </div>
 
             <div className="xl:max-w-[770px] w-full bg-white rounded-xl shadow-1 p-4 sm:p-7.5 xl:p-10">
-              <form>
+              <form onSubmit={submitHandler}>
                 <div className="flex flex-col lg:flex-row gap-5 sm:gap-8 mb-5">
                   <div className="w-full">
                     <label htmlFor="firstName" className="block mb-2.5">
                       First Name <span className="text-red">*</span>
                     </label>
-
                     <input
                       type="text"
                       name="firstName"
                       id="firstName"
-                      placeholder="Jhon"
+                      placeholder="John"
+                      value={formData.firstName}
+                      onChange={onChange}
                       className="rounded-md border border-gray-3 bg-gray-1 placeholder:text-dark-5 w-full py-2.5 px-5 outline-none duration-200 focus:border-transparent focus:shadow-input focus:ring-2 focus:ring-blue/20"
                     />
                   </div>
@@ -107,12 +137,13 @@ const Contact = () => {
                     <label htmlFor="lastName" className="block mb-2.5">
                       Last Name <span className="text-red">*</span>
                     </label>
-
                     <input
                       type="text"
                       name="lastName"
                       id="lastName"
-                      placeholder="Deo"
+                      placeholder="Doe"
+                      value={formData.lastName}
+                      onChange={onChange}
                       className="rounded-md border border-gray-3 bg-gray-1 placeholder:text-dark-5 w-full py-2.5 px-5 outline-none duration-200 focus:border-transparent focus:shadow-input focus:ring-2 focus:ring-blue/20"
                     />
                   </div>
@@ -123,12 +154,13 @@ const Contact = () => {
                     <label htmlFor="subject" className="block mb-2.5">
                       Subject
                     </label>
-
                     <input
                       type="text"
                       name="subject"
                       id="subject"
                       placeholder="Type your subject"
+                      value={formData.subject}
+                      onChange={onChange}
                       className="rounded-md border border-gray-3 bg-gray-1 placeholder:text-dark-5 w-full py-2.5 px-5 outline-none duration-200 focus:border-transparent focus:shadow-input focus:ring-2 focus:ring-blue/20"
                     />
                   </div>
@@ -137,27 +169,43 @@ const Contact = () => {
                     <label htmlFor="phone" className="block mb-2.5">
                       Phone
                     </label>
-
                     <input
                       type="text"
                       name="phone"
                       id="phone"
                       placeholder="Enter your phone"
+                      value={formData.phone}
+                      onChange={onChange}
                       className="rounded-md border border-gray-3 bg-gray-1 placeholder:text-dark-5 w-full py-2.5 px-5 outline-none duration-200 focus:border-transparent focus:shadow-input focus:ring-2 focus:ring-blue/20"
                     />
                   </div>
+                </div>
+                <div className="w-full">
+                  <label htmlFor="phone" className="block mb-2.5">
+                    Email
+                  </label>
+                  <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    placeholder="Enter your Email"
+                    value={formData.email}
+                    onChange={onChange}
+                    className="rounded-md border border-gray-3 bg-gray-1 placeholder:text-dark-5 w-full py-2.5 px-5 outline-none duration-200 focus:border-transparent focus:shadow-input focus:ring-2 focus:ring-blue/20"
+                  />
                 </div>
 
                 <div className="mb-7.5">
                   <label htmlFor="message" className="block mb-2.5">
                     Message
                   </label>
-
                   <textarea
                     name="message"
                     id="message"
                     rows={5}
                     placeholder="Type your message"
+                    value={formData.message}
+                    onChange={onChange}
                     className="rounded-md border border-gray-3 bg-gray-1 placeholder:text-dark-5 w-full p-5 outline-none duration-200 focus:border-transparent focus:shadow-input focus:ring-2 focus:ring-blue/20"
                   ></textarea>
                 </div>

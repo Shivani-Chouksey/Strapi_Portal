@@ -11,7 +11,7 @@
         "draftAndPublish": false
     },
     "attributes": {
-        "name": {
+        "firstName": {
             "type": "string"
         },
         "lastname": {
@@ -20,7 +20,7 @@
         "email": {
             "type": "email"
         },
-        "contactNumber": {
+        "phone": {
             "type": "string"
         },
         "message": {

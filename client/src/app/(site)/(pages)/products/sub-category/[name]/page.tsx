@@ -75,9 +75,9 @@ function Page() {
       />
       <section className="overflow-hidden relative pb-20 pt-5 lg:pt-20 xl:pt-28 bg-[#f3f4f6]">
         <div className=" w-full mx-auto px-4 sm:px-8 xl:px-0">
-          <div className="flex gap-7.5">
+          <div className="flex gap-7.5 px-14">
             {/* <!-- Sidebar Start --> */}
-            <div
+            {/* <div
               className={`sidebar-content fixed xl:z-1 z-9999 left-0 top-0 xl:translate-x-0 xl:static max-w-[310px] xl:max-w-[270px] w-full ease-out duration-200 ${
                 productSidebar
                   ? "translate-x-0 bg-white p-5 h-screen overflow-y-auto"
@@ -115,12 +115,12 @@ function Page() {
                   />
                 </svg>
               </button>
-            </div>
+            </div> */}
             {/* // <!-- Sidebar End --> */}
 
             {/* // <!-- Content Start --> */}
-            <div className="xl:max-w-[870px] w-full">
-              <div className="rounded-lg bg-white shadow-1 pl-3 pr-2.5 py-2.5 mb-6">
+            <div className=" w-full">
+              <div className="rounded-lg bg-white shadow-1 pl-3 pr-2.5 py-2.5 mb-6 ">
                 <div className="flex items-center justify-between">
                   {/* <!-- top bar left --> */}
                   <div className="flex flex-wrap items-center gap-4">
@@ -219,7 +219,7 @@ function Page() {
               <div
                 className={`${
                   productStyle === "grid"
-                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-7.5 gap-y-9"
+                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-7.5 gap-y-9"
                     : "flex flex-col gap-7.5"
                 }`}
               >

@@ -580,11 +580,11 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    contactNumber: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     email: Schema.Attribute.Email;
+    firstName: Schema.Attribute.String;
     lastname: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -593,7 +593,7 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     message: Schema.Attribute.Text;
-    name: Schema.Attribute.String;
+    phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     subject: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
