@@ -58,12 +58,11 @@ export interface ProductProductsSection extends Struct.ComponentSchema {
 export interface TagTag extends Struct.ComponentSchema {
   collectionName: 'components_tag_tags';
   info: {
+    description: '';
     displayName: 'tag';
   };
   attributes: {
-    name: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 

@@ -31,9 +31,14 @@ module.exports = {
   //       .concat(createdTags.map((tag) => ({ id: tag.id, name: tag.name }))); // Include newly created tags
   //   }
   // },
+
+  //#####################################################################################
+  // send mail to approver while creating blog
+
   // async afterCreate(event) {
   //   const { result } = event;
   //   try {
+
   //     // Get all admin users
   //     // const adminUsers = await strapi.query("admin::user").findMany();
   //     // Get all subscribers (assuming you have a 'subscriber' collection)
@@ -48,7 +53,7 @@ module.exports = {
   //     });
   //     // Extract emails of approver users
   //     const recipients = approverUsers.map((user) => user.email);
-  //     // console.log("recipients", recipients);
+  //     console.log("recipients", recipients);
   //     // Send email notification if there are recipients
   //     if (recipients.length > 0) {
   //       await strapi.plugins["email"].services.email.send({
@@ -72,4 +77,54 @@ module.exports = {
   //     strapi.log.error("Error sending email notification:", error);
   //   }
   // },
+
+  async afterCreate(event) {
+    const { result } = event;
+
+    try {
+      if (Array.isArray(result.tags) && result.tags.length > 0) {
+        console.log("Tags before processing:", result.tags);
+
+        // Fetch existing tags
+        const existingTags = await strapi.entityService.findMany(
+          "api::tag.tag",
+          {
+            fields: ["name"],
+          }
+        );
+
+        console.log("Existing Tags:", existingTags);
+
+        // Extract tag names (handle both object and string cases)
+        const existingTagNames = existingTags.map((tag) => tag.name);
+        const newTags = result.tags
+          .map((tag) => (typeof tag === "object" && tag.name ? tag.name : tag)) // Ensure string format
+          .filter((tag) => !existingTagNames.includes(tag));
+
+        console.log("New Tags to be Created:", newTags);
+
+        // Create new tags
+        for (const tag of newTags) {
+          if (typeof tag === "string") {
+            const createdTag = await strapi.entityService.create(
+              "api::tag.tag",
+              {
+                data: {
+                  name: tag,
+                  slug: tag.toLowerCase().replace(/\s+/g, "-"), // Ensure slug format
+                },
+              }
+            );
+            console.log("Created Tag:", createdTag);
+          } else {
+            console.warn("Skipping invalid tag:", tag);
+          }
+        }
+      } else {
+        console.log("No new tags to be added.");
+      }
+    } catch (error) {
+      console.error("Error in afterCreate hook while processing tags:", error);
+    }
+  },
 };
