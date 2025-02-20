@@ -61,20 +61,9 @@ export interface TagTag extends Struct.ComponentSchema {
     displayName: 'tag';
   };
   attributes: {
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface TagTagSection extends Struct.ComponentSchema {
-  collectionName: 'components_tag_tag_sections';
-  info: {
-    displayName: 'tag_section';
-    icon: 'shield';
-  };
-  attributes: {
-    blogs: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'>;
-    heading: Schema.Attribute.String;
-    sub_heading: Schema.Attribute.Text;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
   };
 }
 
@@ -126,7 +115,6 @@ declare module '@strapi/strapi' {
       'category.categories-section': CategoryCategoriesSection;
       'product.products-section': ProductProductsSection;
       'tag.tag': TagTag;
-      'tag.tag-section': TagTagSection;
       'testimonial.profile': TestimonialProfile;
       'testimonial.testimonial-card': TestimonialTestimonialCard;
       'testimonial.testimonial-section': TestimonialTestimonialSection;

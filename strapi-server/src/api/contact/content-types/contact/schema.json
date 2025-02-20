@@ -1,0 +1,33 @@
+{
+    "kind": "collectionType",
+    "collectionName": "contacts",
+    "info": {
+        "singularName": "contact",
+        "pluralName": "contacts",
+        "displayName": "Contact",
+        "description": "Collection for storing contact information"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "attributes": {
+        "name": {
+            "type": "string"
+        },
+        "lastname": {
+            "type": "string"
+        },
+        "email": {
+            "type": "email"
+        },
+        "contactNumber": {
+            "type": "string"
+        },
+        "message": {
+            "type": "text"
+        },
+        "subject": {
+            "type": "text"
+        }
+    }
+}

@@ -60,8 +60,7 @@
       },
       "type": "dynamiczone",
       "components": [
-        "testimonial.testimonial-section",
-        "tag.tag-section"
+        "testimonial.testimonial-section"
       ]
     }
   }

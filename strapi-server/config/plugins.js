@@ -13,20 +13,21 @@ module.exports = ({ env }) => ({
       },
     },
   },
+
   email: {
     config: {
       provider: "nodemailer",
       providerOptions: {
-        host: "smtp.example.com", // Your SMTP server
-        port: 587,
+        host: "smtp.gmail.com",
+        port: env("SMTP_PORT"),
         auth: {
-          user: "your-email@example.com",
-          pass: "your-email-password",
+          user: env("SMTP_EMAIL"), // Your email
+          pass: env("SMTP_PASSWORD"), // Your email password
         },
       },
       settings: {
-        defaultFrom: "no-reply@example.com",
-        defaultReplyTo: "your-email@example.com",
+        defaultFrom: env("SMTP_EMAIL"),
+        defaultReplyTo: env("SMTP_EMAIL"),
       },
     },
   },

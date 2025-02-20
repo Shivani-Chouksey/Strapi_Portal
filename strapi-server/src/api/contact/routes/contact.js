@@ -2,11 +2,10 @@ module.exports = {
   routes: [
     {
       method: "POST",
-      path: "/contact-form/submit",
-      handler: "contact-form.submit",
+      path: "/contact/submit",
+      handler: "contact.submit",
       config: {
         policies: [],
-        middlewares: [],
       },
     },
   ],

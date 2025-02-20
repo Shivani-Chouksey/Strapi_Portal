@@ -31,12 +31,6 @@
       "type": "uid",
       "targetField": "title"
     },
-    "tags": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::tag.tag",
-      "mappedBy": "blogs"
-    },
     "author_detail": {
       "type": "component",
       "repeatable": false,
@@ -44,6 +38,11 @@
     },
     "blog_overview": {
       "type": "text"
+    },
+    "tags": {
+      "type": "component",
+      "repeatable": true,
+      "component": "tag.tag"
     }
   }
 }
