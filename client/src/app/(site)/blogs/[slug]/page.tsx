@@ -2,11 +2,20 @@ import BlogDetails from "@/components/BlogDetails";
 import React from "react";
 
 import { Metadata } from "next";
-export const metadata: Metadata = {
-  title: "Blog Details Page | NextCommerce Nextjs E-commerce template",
-  description: "This is Blog Details Page for NextCommerce Template",
-  // other metadata
+
+type BlogDetailsPageProps = {
+  params: { slug: string }; // Adjust the key based on your dynamic route
 };
+
+// Dynamic metadata function
+export async function generateMetadata({
+  params,
+}: BlogDetailsPageProps): Promise<Metadata> {
+  return {
+    title: `Blog Details: ${params.slug} `,
+    description: `Read more about ${params.slug} in our NextCommerce Template Blog.`,
+  };
+}
 
 const BlogDetailsPage = ({ params }) => {
   return (
