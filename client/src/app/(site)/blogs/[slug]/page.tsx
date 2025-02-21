@@ -8,9 +8,7 @@ type BlogDetailsPageProps = {
 };
 
 // Dynamic metadata function
-export async function generateMetadata({
-  params,
-}: BlogDetailsPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }) {
   return {
     title: `Blog Details: ${params.slug} `,
     description: `Read more about ${params.slug} in our NextCommerce Template Blog.`,
