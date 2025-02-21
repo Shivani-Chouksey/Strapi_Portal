@@ -1,9 +1,36 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Breadcrumb from "../Common/Breadcrumb";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-const BlogDetails = () => {
+const BlogDetails = ({ params }) => {
+  const [blogDetail, setBlogDetail] = useState({});
+  console.log("params inside detail", params);
+
+  const getBlogDetail = async () => {
+    try {
+      const responseData = await axios.get(
+        `http://localhost:1337/api/blogs?populate[author_detail][populate]=profile_image&populate[cover_images]=true&populate[tags]=true&filters[slug][$eq]=${params.slug}`
+      );
+      if (responseData.status === 200) {
+        setBlogDetail(responseData.data.data[0]);
+      }
+      console.log("response data ", responseData);
+    } catch (error) {
+      console.log(error);
+
+      // toast.error(error.response.data.error.message);
+    }
+  };
+
+  useEffect(() => {
+    getBlogDetail();
+  }, []);
+  console.log("blogDetail", blogDetail);
+
   return (
     <>
       <Breadcrumb title={"Blog Details"} pages={["blog details"]} />
@@ -12,7 +39,9 @@ const BlogDetails = () => {
           <div className="rounded-[10px] overflow-hidden mb-7.5">
             <Image
               className="rounded-[10px]"
-              src="/images/blog/blog-details-01.jpg"
+              src={
+                blogDetail?.cover_images ? blogDetail?.cover_images[0].url : ""
+              }
               alt="details"
               width={750}
               height={477}
@@ -22,7 +51,7 @@ const BlogDetails = () => {
           <div>
             <span className="flex items-center gap-3 mb-4">
               <a href="#" className="ease-out duration-200 hover:text-blue">
-                Mar 27, 2022
+                {blogDetail?.createdAt}
               </a>
 
               {/* <!-- divider --> */}
@@ -34,45 +63,10 @@ const BlogDetails = () => {
             </span>
 
             <h2 className="font-medium text-dark text-xl lg:text-2xl xl:text-custom-4xl mb-4">
-              What information is needed for shipping?
+              {blogDetail?.title}
             </h2>
 
-            <p className="mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              sit amet eros ac ipsum egestas dapibus. Vivamus gravida, ex non
-              placerat tincidunt, lorem felis facilisis tellus, vitae bibendum
-              purus felis eget tellus. In non rutrum ipsum. Morbi ut dui ante.
-            </p>
-
-            <p className="mb-6">
-              Nunc faucibus libero sem, quis placerat nisl pellentesque eget.
-              Morbi porta velit ut leo sollicitudin, a faucibus purus faucibus.
-              Maecenas mollis dui nec metus euismod, sed aliquam risus luctus.
-            </p>
-
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-              enim lobortis scelerisque fermentum. Neque sodales ut etiam sit
-              amet. Ligula ullamcorper malesuada proin libero nunc consequat
-              interdum varius. Quam pellentesque nec nam aliquam sem et tortor
-              consequat.
-            </p>
-
-            <div className="mt-7.5">
-              <h3 className="font-medium text-dark text-lg xl:text-[26px] xl:leading-[34px] mb-6">
-                Digital marketplace for Ui/Ux designers.
-              </h3>
-
-              <ul className="list-disc pl-6">
-                <li>Consectetur adipiscing elit in voluptate velit.</li>
-                <li>Mattis vulputate cupidatat.</li>
-                <li>
-                  Vulputate enim nulla aliquet porttitor odio pellentesque
-                </li>
-                <li>Ligula ullamcorper malesuada proin</li>
-              </ul>
-            </div>
+            <p className="mb-6">{blogDetail?.content}</p>
 
             <div className="rounded-xl bg-white pt-7.5 pb-6 px-4 sm:px-7.5 my-7.5">
               <p className="italic text-dark text-center">
@@ -87,7 +81,11 @@ const BlogDetails = () => {
               >
                 <div className="flex w-12 h-12 rounded-full overflow-hidden">
                   <Image
-                    src="/images/users/user-04.jpg"
+                    src={
+                      blogDetail?.author_detail
+                        ? blogDetail?.author_detail?.profile_image.url
+                        : ""
+                    }
                     alt="user"
                     width={48}
                     height={48}
@@ -95,71 +93,33 @@ const BlogDetails = () => {
                 </div>
 
                 <div>
-                  <h4 className="text-dark text-custom-sm">Jhon Drineo</h4>
-                  <p className="text-custom-xs">Entroprenor</p>
+                  <h4 className="text-dark text-custom-sm">
+                    {blogDetail?.author_detail?.username}
+                  </h4>
+                  <p className="text-custom-xs">
+                    {" "}
+                    {blogDetail?.author_detail?.role}
+                  </p>
                 </div>
               </a>
             </div>
-
-            <p className="mb-6">
-              consectetur adipiscing elit in voluptate velit esse cillum dolore
-              eu fugiat nulla pariatur. Excepteur sint occaecat mattis vulputate
-              cupidatat.
-            </p>
-
-            <p className="mb-6">
-              Nunc faucibus libero sem, quis placerat nisl pellentesque eget.
-              Morbi porta velit ut leo sollicitudin, a faucibus purus faucibus.
-              Maecenas mollis dui nec metus euismod, sed aliquam risus luctus.
-            </p>
-
-            <p className="mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-              enim lobortis scelerisque fermentum. Neque sodales ut etiam sit
-              amet. Ligula ullamcorper malesuada proin libero nunc consequat
-              interdum varius. Quam pellentesque nec nam aliquam sem et tortor
-              consequat.
-            </p>
-
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              sit amet eros ac ipsum egestas dapibus. Vivamus gravida, ex non
-              placerat tincidunt, lorem felis facilisis tellus, vitae bibendum
-              purus felis eget tellus. In non rutrum ipsum. Morbi ut dui ante.
-            </p>
 
             <div className="flex flex-wrap items-center justify-between gap-10 mt-10">
               <div className="flex flex-wrap items-center gap-5">
                 <p>Popular Tags :</p>
 
                 <ul className="flex flex-wrap items-center gap-3.5">
-                  <li>
-                    <a
-                      className="inline-flex hover:text-white border border-gray-3 bg-white py-2 px-4 rounded-md ease-out duration-200 hover:bg-blue hover:border-blue"
-                      href="#"
-                    >
-                      Desktop
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      className="inline-flex hover:text-white border border-gray-3 bg-white py-2 px-4 rounded-md ease-out duration-200 hover:bg-blue hover:border-blue"
-                      href="#"
-                    >
-                      Macbook
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      className="inline-flex hover:text-white border border-gray-3 bg-white py-2 px-4 rounded-md ease-out duration-200 hover:bg-blue hover:border-blue"
-                      href="#"
-                    >
-                      PC
-                    </a>
-                  </li>
+                  {blogDetail?.tags?.length > 0 &&
+                    blogDetail.tags.map((tag) => (
+                      <li key={tag.id}>
+                        <a
+                          className="inline-flex hover:text-white border border-gray-3 bg-white py-2 px-4 rounded-md ease-out duration-200 hover:bg-blue hover:border-blue"
+                          href="#"
+                        >
+                          {tag.name}
+                        </a>
+                      </li>
+                    ))}
                 </ul>
               </div>
 

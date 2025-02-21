@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Breadcrumb from "../Common/Breadcrumb";
-import blogData from "./blogData";
-import BlogItem from "../Blog/BlogItem";
+
 import axios from "axios";
 import { toast } from "react-toastify";
+import Breadcrumb from "@/components/Common/Breadcrumb";
+import BlogItem from "@/components/Blog/BlogItem";
 const API_END_POINT = "http://localhost:1337/api/blogs?populate=*";
 const BlogGrid = () => {
   const [bloglist, setBlogsList] = useState([]);

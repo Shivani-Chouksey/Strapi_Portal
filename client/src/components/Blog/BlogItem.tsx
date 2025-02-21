@@ -1,14 +1,14 @@
 import React from "react";
-import { BlogItem } from "@/types/blogItem";
+// import { BlogItem } from "@/types/blogItem";
 import Image from "next/image";
 import Link from "next/link";
 
-const BlogItem = ({ blog }: { blog: BlogItem }) => {
+const BlogItem = ({ blog }: { blog: any }) => {
   return (
     <div className="shadow-1 bg-white rounded-xl px-4 sm:px-5 pt-5 pb-4">
-      <Link href="/blogs/blog-details" className="rounded-md overflow-hidden">
+      <Link href={`/blogs/${blog.slug}`} className="rounded-md overflow-hidden">
         <Image
-          src={blog.img}
+          src={blog?.cover_images ? blog?.cover_images[0].url : ""}
           alt="blog"
           className="rounded-md w-full"
           width={330}
@@ -22,22 +22,25 @@ const BlogItem = ({ blog }: { blog: BlogItem }) => {
             href="#"
             className="text-custom-sm ease-out duration-200 hover:text-blue"
           >
-            {blog.date}
+            {blog.createdAt}
           </a>
 
           {/* <!-- divider --> */}
           <span className="block w-px h-4 bg-gray-4"></span>
 
-          <a
-            href="#"
-            className="text-custom-sm ease-out duration-200 hover:text-blue"
-          >
-            {blog.views} Views
-          </a>
+          {/* {blog.tags.map((tag, i) => (
+            <a
+              key={tag.id}
+              href="#"
+              className="text-custom-sm ease-out duration-200 hover:text-blue"
+            >
+              {tag}
+            </a>
+          ))} */}
         </span>
 
         <h2 className="font-medium text-dark text-lg sm:text-xl ease-out duration-200 mb-4 hover:text-blue">
-          <Link href="/blogs/blog-details">{blog.title}</Link>
+          <Link href={`/blogs/${blog.slug}`}>{blog.title}</Link>
         </h2>
 
         <Link
