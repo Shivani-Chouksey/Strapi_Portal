@@ -112,12 +112,12 @@ const BlogDetails = ({ params }) => {
                   {blogDetail?.tags?.length > 0 &&
                     blogDetail.tags.map((tag) => (
                       <li key={tag.id}>
-                        <a
+                        <Link
                           className="inline-flex hover:text-white border border-gray-3 bg-white py-2 px-4 rounded-md ease-out duration-200 hover:bg-blue hover:border-blue"
-                          href="#"
+                          href={`/blogs/tag/${tag.name}`}
                         >
                           {tag.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                 </ul>
