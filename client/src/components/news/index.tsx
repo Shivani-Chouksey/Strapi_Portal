@@ -6,14 +6,22 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import BlogItem from "@/components/Blog/BlogItem";
-const API_END_POINT = "http://localhost:1337/api/blogs?populate=*";
-const BlogGrid = () => {
-  const [bloglist, setBlogsList] = useState([]);
-  const getAllBlogs = async () => {
+import Link from "next/link";
+import Image from "next/image";
+const Newslist = () => {
+  const [newsList, setNewsList] = useState([]);
+  const [page, setPage] = useState(1);
+  const pageSize = 6;
+  const totalPage = 5;
+  const getAllNews = async () => {
     try {
-      const allBlog = await axios.get(API_END_POINT);
-      if (allBlog.status === 200) {
-        setBlogsList(allBlog.data.data);
+      const allNews = await axios.get(
+        `https://content.guardianapis.com/search?api-key=80b13bdf-05aa-41f4-9735-5c8281295a57&page-size=${pageSize}&page=${page}`
+      );
+      //   console.log("allNews", allNews);
+
+      if (allNews.status === 200) {
+        setNewsList(allNews.data.response.results);
       }
     } catch (error) {
       toast.error(error.response.data.error.message);
@@ -21,22 +29,42 @@ const BlogGrid = () => {
   };
 
   useEffect(() => {
-    getAllBlogs();
-  }, []);
-  console.log("blog list", bloglist);
+    getAllNews();
+  }, [page]);
 
   return (
     <>
       <Breadcrumb
-        title={`Total Blog - ${bloglist.length}`}
-        pages={["blog grid"]}
+        title={`Total News - ${newsList.length}`}
+        pages={["News List"]}
       />{" "}
       <section className="overflow-hidden py-20 bg-gray-2">
         <div className="max-w-[1170px] w-full mx-auto px-4 sm:px-8 xl:px-0">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-7.5">
             {/* <!-- blog item --> */}
-            {bloglist.map((blog, key) => (
-              <BlogItem blog={blog} key={key} />
+            {newsList.map((news, key) => (
+              <div
+                key={key}
+                className="shadow-1 bg-white rounded-xl px-4 sm:px-5 pt-5 pb-4"
+              >
+                <div className="mt-5.5">
+                  <span className="flex  items-center gap-3 mb-2.5">
+                    <Link
+                      href={news.webUrl}
+                      className="text-custom-sm  text-sm ease-out duration-200 hover:text-blue"
+                    >
+                      {news.webTitle}
+                    </Link>
+
+                    {/* <!-- divider --> */}
+                    <span className="block w-px h-4 bg-gray-4"></span>
+                  </span>
+
+                  <h2 className="font-medium text-dark text-lg sm:text-xl ease-out duration-200 mb-4 ">
+                    News Type - {news.sectionName}
+                  </h2>
+                </div>
+              </div>
             ))}
           </div>
 
@@ -46,10 +74,11 @@ const BlogGrid = () => {
               <ul className="flex items-center">
                 <li>
                   <button
+                    onClick={() => setPage((prev) => prev - 1)}
+                    disabled={page === 1}
                     id="paginationLeft"
                     aria-label="button for pagination left"
                     type="button"
-                    disabled
                     className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px disabled:text-gray-4"
                   >
                     <svg
@@ -71,68 +100,16 @@ const BlogGrid = () => {
                 <li>
                   <a
                     href="#"
-                    className="flex py-1.5 px-3.5 duration-200 rounded-[3px] bg-blue text-white hover:text-white hover:bg-blue"
-                  >
-                    1
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    href="#"
                     className="flex py-1.5 px-3.5 duration-200 rounded-[3px] hover:text-white hover:bg-blue"
                   >
-                    2
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    href="#"
-                    className="flex py-1.5 px-3.5 duration-200 rounded-[3px] hover:text-white hover:bg-blue"
-                  >
-                    3
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    href="#"
-                    className="flex py-1.5 px-3.5 duration-200 rounded-[3px] hover:text-white hover:bg-blue"
-                  >
-                    4
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    href="#"
-                    className="flex py-1.5 px-3.5 duration-200 rounded-[3px] hover:text-white hover:bg-blue"
-                  >
-                    5
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    href="#"
-                    className="flex py-1.5 px-3.5 duration-200 rounded-[3px] hover:text-white hover:bg-blue"
-                  >
-                    ...
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    href="#"
-                    className="flex py-1.5 px-3.5 duration-200 rounded-[3px] hover:text-white hover:bg-blue"
-                  >
-                    10
+                    {page}
                   </a>
                 </li>
 
                 <li>
                   <button
+                    onClick={() => setPage((prev) => prev + 1)}
+                    disabled={page === totalPage}
                     id="paginationLeft"
                     aria-label="button for pagination left"
                     type="button"
@@ -163,4 +140,4 @@ const BlogGrid = () => {
   );
 };
 
-export default BlogGrid;
+export default Newslist;

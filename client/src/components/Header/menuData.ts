@@ -125,4 +125,10 @@ export const menuData: Menu[] = [
     //   },
     // ],
   },
+  {
+    id: 8,
+    title: "News",
+    newTab: false,
+    path: "/news",
+  },
 ];

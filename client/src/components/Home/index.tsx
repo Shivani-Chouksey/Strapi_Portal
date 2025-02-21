@@ -13,7 +13,7 @@ import axios from "axios";
 const Home = () => {
   const [homePageAllDynamicData, setHomePageAllDynamicData] = useState();
   const BaseUrl =
-    "http://localhost:1337/api/home-page?locale=en&populate[product_section][populate][products][populate][1]=product_images&populate[category_section][populate][categories][populate][0]=cover_image&populate[hero_banners][populate][0]=cover_images&populate[hero_banners][populate][1]=button&populate[hero_banners][populate][2]=available_offer&populate[advertising_banner][populate][0]=banner_detail";
+    "http://localhost:1337/api/home-page?locale=hi&populate[product_section][populate][products][populate][1]=product_images&populate[category_section][populate][0]=categories&populate[hero_banners][populate][0]=cover_images&populate[hero_banners][populate][1]=button&populate[hero_banners][populate][2]=available_offer&populate[advertising_banner][populate][0]=images&populate[advertising_banner][populate][1]=button&populate[advertising_banner][populate][3]=available_offer";
 
   const getApiData = async () => {
     try {
