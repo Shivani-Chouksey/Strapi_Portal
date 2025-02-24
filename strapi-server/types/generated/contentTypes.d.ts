@@ -666,6 +666,39 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiNewsListNewsList extends Struct.CollectionTypeSchema {
+  collectionName: 'news_lists';
+  info: {
+    displayName: 'news_list';
+    pluralName: 'news-lists';
+    singularName: 'news-list';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    images: Schema.Attribute.Media<'videos' | 'images', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::news-list.news-list'
+    > &
+      Schema.Attribute.Private;
+    news_api_id: Schema.Attribute.Text;
+    publicationDate: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    sectionName: Schema.Attribute.String;
+    title: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.Text;
+  };
+}
+
 export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   collectionName: 'products';
   info: {
@@ -1322,6 +1355,7 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::contact.contact': ApiContactContact;
       'api::home-page.home-page': ApiHomePageHomePage;
+      'api::news-list.news-list': ApiNewsListNewsList;
       'api::product.product': ApiProductProduct;
       'api::sub-category.sub-category': ApiSubCategorySubCategory;
       'api::tag.tag': ApiTagTag;

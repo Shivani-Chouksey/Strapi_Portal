@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "news_lists",
+  "info": {
+    "singularName": "news-list",
+    "pluralName": "news-lists",
+    "displayName": "news_list"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "text"
+    },
+    "url": {
+      "type": "text"
+    },
+    "publicationDate": {
+      "type": "string"
+    },
+    "images": {
+      "allowedTypes": [
+        "videos",
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "sectionName": {
+      "type": "string"
+    },
+    "news_api_id": {
+      "type": "text"
+    }
+  }
+}
