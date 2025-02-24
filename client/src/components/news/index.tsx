@@ -23,7 +23,7 @@ const Newslist = () => {
   const getAllNews = async () => {
     try {
       const allNews = await axios.get(
-        `http://localhost:1337/api/news-lists?populate=*&pagination[pageSize]=${pageSize}&pagination[page]=${page}&sort=createdAt:asc`
+        `http://localhost:1337/api/news-lists?populate=images&pagination[pageSize]=${pageSize}&pagination[page]=${page}&sort=createdAt:asc`
       );
       console.log("allNews", allNews);
 
