@@ -9,11 +9,15 @@ import BlogItem from "@/components/Blog/BlogItem";
 const API_END_POINT = "http://localhost:1337/api/blogs?populate=*";
 const BlogGrid = () => {
   const [bloglist, setBlogsList] = useState([]);
+  const [paginationInfo, setPaginationInfo] = useState({});
   const getAllBlogs = async () => {
     try {
       const allBlog = await axios.get(API_END_POINT);
+      console.log("allBlog.data.meta.pagination", allBlog.data.meta.pagination);
+
       if (allBlog.status === 200) {
         setBlogsList(allBlog.data.data);
+        setPaginationInfo(allBlog.data.meta.pagination);
       }
     } catch (error) {
       toast.error(error.response.data.error.message);
@@ -23,7 +27,7 @@ const BlogGrid = () => {
   useEffect(() => {
     getAllBlogs();
   }, []);
-  console.log("blog list", bloglist);
+  // console.log("blog list", paginationInfo);
 
   return (
     <>
