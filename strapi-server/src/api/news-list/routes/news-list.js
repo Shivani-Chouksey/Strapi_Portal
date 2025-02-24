@@ -1,22 +1,22 @@
-// 'use strict';
+"use strict";
 
-// /**
-//  * news-list router
-//  */
+/**
+ * news-list router
+ */
 
-// const { createCoreRouter } = require('@strapi/strapi').factories;
+const { factories } = require("@strapi/strapi");
 
-// module.exports = createCoreRouter('api::news-list.news-list');
-module.exports = {
-  routes: [
-    {
-      method: "GET",
-      path: "/news-list",
-      handler: "news-list.fetchNews",
-      config: {
-        policies: [],
-        middlewares: [],
-      },
-    },
-  ],
-};
+module.exports = factories.createCoreRouter("api::news-list.news-list");
+// module.exports = {
+//   routes: [
+//     {
+//       method: "GET",
+//       path: "/news-list",
+//       handler: "news-list.fetchNews",
+//       config: {
+//         policies: [],
+//         middlewares: [],
+//       },
+//     },
+//   ],
+// };

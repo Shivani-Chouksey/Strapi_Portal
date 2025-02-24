@@ -1,22 +1,20 @@
 // 'use strict';
 
-const { default: axios } = require("axios");
+/**
+ * news-list controller
+ */
 
-// /**
-//  * news-list controller
-//  */
+const { factories } = require("@strapi/strapi");
 
-// const { createCoreController } = require('@strapi/strapi').factories;
+module.exports = factories.createCoreController("api::news-list.news-list");
 
-// module.exports = createCoreController('api::news-list.news-list');
+// module.exports = {
+//   async fetchNews(ctx) {
+//     console.log("Fetching news...");
 
-module.exports = {
-  async fetchNews(ctx) {
-    console.log("Fetching news...");
-
-    const result = await strapi
-      .service("api::news-list.news-list")
-      .fetchAndStoreNews();
-    ctx.send(result);
-  },
-};
+//     const result = await strapi
+//       .service("api::news-list.news-list")
+//       .fetchAndStoreNews();
+//     ctx.send(result);
+//   },
+// };
