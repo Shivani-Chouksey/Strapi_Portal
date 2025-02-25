@@ -71,9 +71,6 @@ const ShopWithSidebar = () => {
     }
   };
 
-  console.log("all products", allProduct);
-  console.log("all categories", categories);
-
   useEffect(() => {
     getAllProducts();
     getAllCategores();
@@ -92,54 +89,6 @@ const ShopWithSidebar = () => {
     { label: "Latest Products", value: "0" },
     { label: "Best Selling", value: "1" },
     { label: "Old Products", value: "2" },
-  ];
-
-  // const categories = [
-  //   {
-  //     name: "Desktop",
-  //     products: 10,
-  //     isRefined: true,
-  //   },
-  //   {
-  //     name: "Laptop",
-  //     products: 12,
-  //     isRefined: false,
-  //   },
-  //   {
-  //     name: "Monitor",
-  //     products: 30,
-  //     isRefined: false,
-  //   },
-  //   {
-  //     name: "UPS",
-  //     products: 23,
-  //     isRefined: false,
-  //   },
-  //   {
-  //     name: "Phone",
-  //     products: 10,
-  //     isRefined: false,
-  //   },
-  //   {
-  //     name: "Watch",
-  //     products: 13,
-  //     isRefined: false,
-  //   },
-  // ];
-
-  const genders = [
-    {
-      name: "Men",
-      products: 10,
-    },
-    {
-      name: "Women",
-      products: 23,
-    },
-    {
-      name: "Unisex",
-      products: 8,
-    },
   ];
 
   useEffect(() => {
@@ -248,7 +197,7 @@ const ShopWithSidebar = () => {
                 <div className="flex items-center justify-between">
                   {/* <!-- top bar left --> */}
                   <div className="flex flex-wrap items-center gap-4">
-                    <CustomSelect options={options} />
+                    {/* <CustomSelect options={options} /> */}
 
                     <p>
                       {/* Showing <span className="text-dark">9 of 50</span>{" "} */}

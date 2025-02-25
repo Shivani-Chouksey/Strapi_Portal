@@ -3,8 +3,12 @@ import ShopWithSidebar from "@/components/ShopWithSidebar";
 
 import { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Product Page | NextCommerce Nextjs E-commerce template",
-  description: "This is Product Page for NextCommerce Template",
+  title: "Product Page | Strapi Portal",
+  description: "This is Product Page | Strapi Portal",
+  openGraph: {
+    title: "Product Page | Strapi Portal",
+    description: "This is Product Page | Strapi Portal",
+  },
   // other metadata
 };
 

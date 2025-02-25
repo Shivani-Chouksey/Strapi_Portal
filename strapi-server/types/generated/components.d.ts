@@ -40,6 +40,17 @@ export interface CategoryCategoriesSection extends Struct.ComponentSchema {
   };
 }
 
+export interface CommonSeo extends Struct.ComponentSchema {
+  collectionName: 'components_common_seos';
+  info: {
+    displayName: 'seo';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.Text;
+  };
+}
+
 export interface FooterInfo extends Struct.ComponentSchema {
   collectionName: 'components_footer_infos';
   info: {
@@ -126,6 +137,7 @@ declare module '@strapi/strapi' {
       'banner.button': BannerButton;
       'banner.offer': BannerOffer;
       'category.categories-section': CategoryCategoriesSection;
+      'common.seo': CommonSeo;
       'footer.info': FooterInfo;
       'product.products-section': ProductProductsSection;
       'tag.tag': TagTag;

@@ -62,6 +62,9 @@ module.exports = createCoreController(
                 },
               },
             },
+            seo: {
+              populate: "*",
+            },
           },
         }
       );

@@ -1,11 +1,10 @@
 import React from "react";
 
 import { Metadata } from "next";
-import Newslist from "@/components/news";
+import Newslist from "@/components/pages/News";
 export const metadata: Metadata = {
-  title: "News Page | NextCommerce Nextjs E-commerce template",
-  description: "This is News Page for NextCommerce Template",
-  // other metadata
+  title: "All News | Stapi Portal",
+  description: "This is All News | Stapi Portal",
 };
 
 const News = () => {

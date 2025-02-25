@@ -523,6 +523,7 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'common.seo', false>;
     slug: Schema.Attribute.UID<'title'>;
     tags: Schema.Attribute.Component<'tag.tag', true>;
     title: Schema.Attribute.Text;
@@ -688,6 +689,12 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
       }>;
     products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'common.seo', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

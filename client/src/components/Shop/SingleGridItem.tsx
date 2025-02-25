@@ -11,7 +11,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const SingleGridItem = ({ item }: { item: Product }) => {
+const SingleGridItem = ({ item }) => {
   const { openModal } = useModalContext();
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
@@ -52,7 +52,7 @@ const SingleGridItem = ({ item }: { item: Product }) => {
     <div className="group">
       <div className="relative overflow-hidden flex items-center justify-center rounded-lg bg-white shadow-1 min-h-[270px] mb-4">
         <Image
-          src={item.product_images[0]?.url}
+          src={item?.product_images[0]?.url}
           alt=""
           width={250}
           height={250}
