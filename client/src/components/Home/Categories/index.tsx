@@ -136,7 +136,7 @@ const Categories = ({ category_section }) => {
               },
             }}
           >
-            {data.map((item, key) => (
+            {category_section?.categories.map((item, key) => (
               <SwiperSlide key={key}>
                 <SingleItem item={item} />
               </SwiperSlide>

@@ -9,8 +9,9 @@ import "swiper/css/navigation";
 import "swiper/css";
 import SingleItem from "./SingleItem";
 
-const Testimonials = () => {
+const Testimonials = ({ testinomials }) => {
   const sliderRef = useRef(null);
+  console.log("testinomials", testinomials);
 
   const handlePrev = useCallback(() => {
     if (!sliderRef.current) return;
@@ -37,10 +38,10 @@ const Testimonials = () => {
                     width={17}
                     height={17}
                   />
-                  Testimonials
+                  {testinomials?.heading}
                 </span>
                 <h2 className="font-semibold text-xl xl:text-heading-5 text-dark">
-                  User Feedbacks
+                  {testinomials?.sub_heading}
                 </h2>
               </div>
 
@@ -102,7 +103,7 @@ const Testimonials = () => {
                 },
               }}
             >
-              {testimonialsData.map((item, key) => (
+              {testinomials?.testimonials?.map((item, key) => (
                 <SwiperSlide key={key}>
                   <SingleItem testimonial={item} />
                 </SwiperSlide>
