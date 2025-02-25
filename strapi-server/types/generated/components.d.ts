@@ -40,6 +40,20 @@ export interface CategoryCategoriesSection extends Struct.ComponentSchema {
   };
 }
 
+export interface FooterInfo extends Struct.ComponentSchema {
+  collectionName: 'components_footer_infos';
+  info: {
+    description: '';
+    displayName: 'info';
+  };
+  attributes: {
+    link: Schema.Attribute.Component<'banner.button', true>;
+    section_name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+  };
+}
+
 export interface ProductProductsSection extends Struct.ComponentSchema {
   collectionName: 'components_product_products_sections';
   info: {
@@ -99,9 +113,9 @@ export interface TestimonialTestimonialSection extends Struct.ComponentSchema {
   attributes: {
     heading: Schema.Attribute.String & Schema.Attribute.Required;
     sub_heading: Schema.Attribute.Text;
-    testimonials: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::testimonial.testimonial'
+    testimonials: Schema.Attribute.Component<
+      'testimonial.testimonial-card',
+      true
     >;
   };
 }
@@ -112,6 +126,7 @@ declare module '@strapi/strapi' {
       'banner.button': BannerButton;
       'banner.offer': BannerOffer;
       'category.categories-section': CategoryCategoriesSection;
+      'footer.info': FooterInfo;
       'product.products-section': ProductProductsSection;
       'tag.tag': TagTag;
       'testimonial.profile': TestimonialProfile;

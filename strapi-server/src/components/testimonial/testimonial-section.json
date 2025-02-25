@@ -14,9 +14,9 @@
       "type": "text"
     },
     "testimonials": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::testimonial.testimonial"
+      "type": "component",
+      "repeatable": true,
+      "component": "testimonial.testimonial-card"
     }
   }
 }
